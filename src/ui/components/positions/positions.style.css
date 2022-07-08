@@ -8,17 +8,34 @@
 }
 
 .position {
-  width: calc(400px / 3);
-  height: calc(400px / 3);
+  width: calc(100% / 3);
+  height: calc(100% / 3);
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
+  background: none;
+  border-radius: 5px;
+  transition: all 0.1s;
 }
 
-.X,
+.position:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
 .O {
   width: 70%;
   height: 70%;
+}
+
+.O {
+  border-radius: 50%;
+  border: 7px solid #cccccc;
+}
+
+.X {
+  width: 75%;
+  height: 75%;
   position: relative;
 }
 
@@ -32,13 +49,8 @@
 }
 
 .X::before {
-  transform: translateY(45px) rotate(45deg);
+  transform: translateY(47.5px) rotate(45deg);
 }
 .X::after {
-  transform: translateY(45px) rotate(-45deg);
-}
-
-.O {
-  border-radius: 50%;
-  border: 7px solid #cccccc;
+  transform: translateY(47.5px) rotate(-45deg);
 }
