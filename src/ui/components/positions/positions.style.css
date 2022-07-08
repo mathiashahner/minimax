@@ -1,0 +1,44 @@
+.positions-list {
+  list-style: none;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  position: absolute;
+}
+
+.position {
+  width: calc(400px / 3);
+  height: calc(400px / 3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.X,
+.O {
+  width: 70%;
+  height: 70%;
+  position: relative;
+}
+
+.X::before,
+.X::after {
+  content: '';
+  width: 100%;
+  height: 7px;
+  position: absolute;
+  background-color: #cccccc;
+}
+
+.X::before {
+  transform: translateY(45px) rotate(45deg);
+}
+.X::after {
+  transform: translateY(45px) rotate(-45deg);
+}
+
+.O {
+  border-radius: 50%;
+  border: 7px solid #cccccc;
+}
