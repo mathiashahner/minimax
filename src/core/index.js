@@ -1,1 +1,1 @@
-export { updatePositions, togglePlayer, verifyWinner } from './old-lady-game'
+export { updatePositions, togglePlayer, getGameState } from './old-lady-game'

@@ -1,7 +1,7 @@
 import './positions.style.css'
 
 import { useState } from 'react'
-import { togglePlayer, updatePositions, verifyWinner } from '../../../core'
+import { togglePlayer, updatePositions, getGameState } from '../../../core'
 
 const INITIAL_GAME = {
   currentPlayer: 'X',
@@ -20,13 +20,13 @@ export const Positions = () => {
 
   return (
     <>
-      {!!verifyWinner(game.positions) && <h1>ACABOU!!!</h1>}
+      {!!getGameState(game.positions) && <h1>ACABOU!!!</h1>}
 
       <ul className='positions-list'>
         {game.positions.map((value, position) => (
           <li className='position' key={position} onClick={() => executeMove(position)}>
-            {value == 'X' && <div className='X' />}
-            {value == 'O' && <div className='O' />}
+            {value === 'X' && <div className='X' />}
+            {value === 'O' && <div className='O' />}
           </li>
         ))}
       </ul>
