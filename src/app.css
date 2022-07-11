@@ -1,3 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+:root {
+  --black: #000000;
+  --white: #ffffff;
+
+  --gray-1: #aaaaaa;
+  --gray-2: #cccccc;
+  --gray-3: rgba(255, 255, 255, 0.1);
+}
+
 * {
   margin: 0;
   border: 0;
@@ -5,13 +16,43 @@
   box-sizing: border-box;
 }
 
+p,
+h1,
+h2,
+button {
+  color: var(--white);
+  font-family: 'Montserrat', sans-serif;
+}
+
+button {
+  cursor: pointer;
+}
+
 .container {
   width: 100%;
   height: 100vh;
   display: flex;
   align-items: center;
-  justify-content: center;
-  background: #aaaaaa;
+  flex-direction: column;
+  justify-content: space-evenly;
+  background: var(--gray-1);
+}
+
+.header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.header > h1 {
+  font-size: 40px;
+  margin-bottom: 10px;
+}
+
+.header > h2 {
+  font-size: 25px;
+  font-weight: 400;
 }
 
 .game-vertical {
@@ -28,7 +69,7 @@
   content: '';
   width: 2px;
   height: 100%;
-  background: #cccccc;
+  background: var(--gray-2);
 }
 
 .game-horizontal {
@@ -45,5 +86,25 @@
   content: '';
   width: 100%;
   height: 2px;
-  background: #cccccc;
+  background: var(--gray-2);
+}
+
+.footer {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.footer > button {
+  font-size: 25px;
+  padding: 10px 15px;
+  border-radius: 5px;
+  background: transparent;
+  border: 2px solid var(--gray-2);
+  transition: all 0.1s;
+}
+
+.footer > button:hover {
+  background: var(--gray-3);
 }
