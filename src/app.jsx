@@ -1,11 +1,15 @@
 import './app.css'
 
-import { GameScreen } from './ui/screens'
+import { Positions } from './ui/components'
 
 const App = () => {
   return (
     <div className='container'>
-      <GameScreen />
+      <div className='game-vertical '>
+        <div className='game-horizontal'>
+          <Positions />
+        </div>
+      </div>
     </div>
   )
 }
