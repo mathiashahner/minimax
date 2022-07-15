@@ -15,10 +15,6 @@ const App = () => {
           <Positions />
         </div>
       </div>
-
-      <footer className='footer'>
-        <button>Começar</button>
-      </footer>
     </div>
   )
 }

@@ -1,0 +1,12 @@
+.game-over-btn {
+  font-size: 25px;
+  padding: 10px 15px;
+  border-radius: 5px;
+  background: transparent;
+  border: 2px solid var(--gray-3);
+  transition: all 0.1s;
+}
+
+.game-over-btn:hover {
+  background: var(--gray-3);
+}

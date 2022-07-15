@@ -1,26 +1,36 @@
 import './positions.style.css'
 
 import { useState } from 'react'
-import { togglePlayer, updatePositions, getGameState } from '../../../core'
-
-const INITIAL_GAME = {
-  currentPlayer: 'X',
-  positions: ['', '', '', '', '', '', '', '', ''],
-}
+import { GameOverScreen } from '../../screens'
+import { togglePlayer, updatePositions, getGameState, GAME_STATE, INITIAL_GAME } from '../../../core'
 
 export const Positions = () => {
   const [game, setGame] = useState(INITIAL_GAME)
 
-  const executeMove = position => {
-    const positions = updatePositions(position, game.positions, game.currentPlayer)
-    const currentPlayer = togglePlayer(game.currentPlayer)
+  const restartGame = () => setGame(INITIAL_GAME)
 
-    setGame({ currentPlayer, positions })
+  const executeMove = position => {
+    if (game.positions[position] === '') {
+      const positions = updatePositions(position, game.positions, game.currentPlayer)
+      const gameState = getGameState(positions)
+
+      if (gameState === GAME_STATE.PROGRESS) {
+        setGame({ currentPlayer: togglePlayer(game.currentPlayer), positions, gameState })
+      } else {
+        setGame({ currentPlayer: game.currentPlayer, positions, gameState })
+      }
+    }
   }
 
   return (
     <>
-      {!!getGameState(game.positions) && <h1>ACABOU!!!</h1>}
+      {game.gameState === GAME_STATE.TIE && (
+        <GameOverScreen message={'DEU VELHA'} restartGame={restartGame} />
+      )}
+
+      {game.gameState === GAME_STATE.WINNER && (
+        <GameOverScreen message={`O VENCEDOR É O JOGADOR ${game.currentPlayer}`} restartGame={restartGame} />
+      )}
 
       <ul className='positions-list'>
         {game.positions.map((value, position) => (
