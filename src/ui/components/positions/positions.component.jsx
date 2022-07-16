@@ -24,12 +24,10 @@ export const Positions = () => {
 
   return (
     <>
-      {game.gameState === GAME_STATE.TIE && (
-        <GameOverScreen message={'DEU VELHA'} restartGame={restartGame} />
-      )}
+      {game.gameState === GAME_STATE.TIE && <GameOverScreen restartGame={restartGame} />}
 
       {game.gameState === GAME_STATE.WINNER && (
-        <GameOverScreen message={`O VENCEDOR É O JOGADOR ${game.currentPlayer}`} restartGame={restartGame} />
+        <GameOverScreen winner={game.currentPlayer} restartGame={restartGame} />
       )}
 
       <ul className='positions-list'>

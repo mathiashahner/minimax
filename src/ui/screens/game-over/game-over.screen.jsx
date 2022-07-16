@@ -2,11 +2,12 @@ import './game-over.style.css'
 
 import { Modal } from '../../components'
 
-export const GameOverScreen = ({ message, restartGame }) => {
+export const GameOverScreen = ({ winner, restartGame }) => {
   return (
     <Modal>
       <h1>FIM DE JOGO!</h1>
-      <p>{message}</p>
+
+      {!!winner ? <p>O VENCEDOR É O JOGADOR {winner}</p> : <p>DEU VELHA</p>}
 
       <button className='game-over-btn' onClick={restartGame}>
         JOGAR NOVAMENTE
@@ -15,4 +16,6 @@ export const GameOverScreen = ({ message, restartGame }) => {
   )
 }
 
-//defaultProps
+GameOverScreen.defaultProps = {
+  winner: '',
+}
