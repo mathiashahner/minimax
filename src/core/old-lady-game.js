@@ -6,14 +6,12 @@ export const updatePositions = (position, positions, currentPlayer) =>
 export const togglePlayer = currentPlayer => (currentPlayer === 'X' ? 'O' : 'X')
 
 export const getGameState = positions => {
-  if (verifyWinner(positions)) return GAME_STATE.WINNER
+  if (getWinnerPlayer(positions)) return GAME_STATE.WINNER
   if (verifyGameOver(positions)) return GAME_STATE.TIE
   return GAME_STATE.PROGRESS
 }
 
-const verifyGameOver = positions => !positions.includes('')
-
-const verifyWinner = positions => {
+export const getWinnerPlayer = positions => {
   return VICTORY_CASES.reduce((accum, victoryCase) => {
     const hasWinner =
       positions[victoryCase[0]] === positions[victoryCase[1]] &&
@@ -21,9 +19,11 @@ const verifyWinner = positions => {
       positions[victoryCase[0]] !== ''
 
     if (hasWinner) {
-      accum = true
+      accum = positions[victoryCase[0]]
     }
 
     return accum
-  }, false)
+  }, '')
 }
+
+const verifyGameOver = positions => !positions.includes('')

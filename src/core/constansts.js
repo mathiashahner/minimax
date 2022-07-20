@@ -5,6 +5,8 @@ export const GAME_STATE = {
 }
 
 export const INITIAL_GAME = {
+  realPlayer: 'X',
+  minimaxPlayer: 'O',
   currentPlayer: 'X',
   gameState: GAME_STATE.PROGRESS,
   positions: ['', '', '', '', '', '', '', '', ''],

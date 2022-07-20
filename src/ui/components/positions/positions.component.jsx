@@ -2,12 +2,21 @@ import './positions.style.css'
 
 import { useState } from 'react'
 import { GameOverScreen } from '../../screens'
-import { togglePlayer, updatePositions, getGameState, GAME_STATE, INITIAL_GAME } from '../../../core'
+import {
+  togglePlayer,
+  updatePositions,
+  getGameState,
+  GAME_STATE,
+  INITIAL_GAME,
+  minimaxMove,
+} from '../../../core'
 
 export const Positions = () => {
   const [game, setGame] = useState(INITIAL_GAME)
 
   const restartGame = () => setGame(INITIAL_GAME)
+
+  const executeMinimaxMove = () => executeMove(minimaxMove(game.positions))
 
   const executeMove = position => {
     if (game.positions[position] === '') {
@@ -15,15 +24,17 @@ export const Positions = () => {
       const gameState = getGameState(positions)
 
       if (gameState === GAME_STATE.PROGRESS) {
-        setGame({ currentPlayer: togglePlayer(game.currentPlayer), positions, gameState })
+        setGame({ ...game, currentPlayer: togglePlayer(game.currentPlayer), positions, gameState })
       } else {
-        setGame({ currentPlayer: game.currentPlayer, positions, gameState })
+        setGame({ ...game, currentPlayer: game.currentPlayer, positions, gameState })
       }
     }
   }
 
   return (
     <>
+      {game.currentPlayer === game.minimaxPlayer && executeMinimaxMove()}
+
       {game.gameState === GAME_STATE.TIE && <GameOverScreen restartGame={restartGame} />}
 
       {game.gameState === GAME_STATE.WINNER && (
