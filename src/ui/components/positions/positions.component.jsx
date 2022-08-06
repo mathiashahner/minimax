@@ -1,40 +1,40 @@
 import './positions.style.css'
 
-import { useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { GameOverScreen } from '../../screens'
-import {
-  togglePlayer,
-  updatePositions,
-  getGameState,
-  GAME_STATE,
-  INITIAL_GAME,
-  minimaxMove,
-} from '../../../core'
+import { updatePositions, getGameState, GAME_STATE, INITIAL_GAME, minimaxMove } from '../../../core'
 
 export const Positions = () => {
   const [game, setGame] = useState(INITIAL_GAME)
 
-  const restartGame = () => setGame(INITIAL_GAME)
+  const executeMove = useCallback(
+    position => {
+      if (game.positions[position] === '') {
+        const positions = updatePositions(position, game.positions, game.currentPlayer)
+        const gameState = getGameState(positions)
 
-  const executeMinimaxMove = () => executeMove(minimaxMove(game.positions))
-
-  const executeMove = position => {
-    if (game.positions[position] === '') {
-      const positions = updatePositions(position, game.positions, game.currentPlayer)
-      const gameState = getGameState(positions)
-
-      if (gameState === GAME_STATE.PROGRESS) {
-        setGame({ ...game, currentPlayer: togglePlayer(game.currentPlayer), positions, gameState })
-      } else {
-        setGame({ ...game, currentPlayer: game.currentPlayer, positions, gameState })
+        if (gameState === GAME_STATE.PROGRESS) {
+          setGame({ ...game, currentPlayer: togglePlayer(game.currentPlayer), positions, gameState })
+        } else {
+          setGame({ ...game, currentPlayer: game.currentPlayer, positions, gameState })
+        }
       }
+    },
+    [game]
+  )
+
+  useEffect(() => {
+    if (game.currentPlayer === game.minimaxPlayer) {
+      executeMove(minimaxMove(game.positions))
     }
-  }
+  }, [game, executeMove])
+
+  const togglePlayer = currentPlayer => (currentPlayer === 'X' ? 'O' : 'X')
+
+  const restartGame = () => setGame(INITIAL_GAME)
 
   return (
     <>
-      {game.currentPlayer === game.minimaxPlayer && executeMinimaxMove()}
-
       {game.gameState === GAME_STATE.TIE && <GameOverScreen restartGame={restartGame} />}
 
       {game.gameState === GAME_STATE.WINNER && (

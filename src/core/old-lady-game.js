@@ -3,8 +3,6 @@ import { GAME_STATE, VICTORY_CASES } from './constansts'
 export const updatePositions = (position, positions, currentPlayer) =>
   positions.map((value, index) => (index === position ? currentPlayer : value))
 
-export const togglePlayer = currentPlayer => (currentPlayer === 'X' ? 'O' : 'X')
-
 export const getGameState = positions => {
   if (getWinnerPlayer(positions)) return GAME_STATE.WINNER
   if (verifyGameOver(positions)) return GAME_STATE.TIE
