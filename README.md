@@ -7,3 +7,9 @@ To start the application, run the command:
 ```
 npm start
 ```
+
+## To Do:
+
+- Add globalGame context
+- Test new minimax implementation
+- New screen to game over
