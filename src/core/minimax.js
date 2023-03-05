@@ -1,4 +1,4 @@
-import { getWinnerPlayer, updatePositions } from './old-lady-game'
+import { getWinnerPlayer, updatePositions } from './tic-tac-toe'
 
 export const minimaxMove = positions => {
   const result = getEmptyPositions(positions).map(position => {

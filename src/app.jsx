@@ -1,20 +1,25 @@
 import './app.css'
 
-import { Positions } from './ui/components'
+import { useState } from 'react'
+import { Header, Game } from './ui/components'
+import { INITIAL_GAME, GAME_STATE } from './core'
+import { GameOverScreen } from './ui/screens'
 
 const App = () => {
+  const [game, setGame] = useState(INITIAL_GAME)
+
+  const restartGame = () => setGame(INITIAL_GAME)
+
   return (
     <div className='container'>
-      <header className='header'>
-        <h1>Jogo da Velha</h1>
-        <h2>Algoritmo Minimax</h2>
-      </header>
+      <Header />
+      <Game game={game} setGame={setGame} />
 
-      <div className='game-vertical '>
-        <div className='game-horizontal'>
-          <Positions />
-        </div>
-      </div>
+      {game.gameState === GAME_STATE.TIE && <GameOverScreen restartGame={restartGame} />}
+
+      {game.gameState === GAME_STATE.WINNER && (
+        <GameOverScreen winner={game.currentPlayer} restartGame={restartGame} />
+      )}
     </div>
   )
 }

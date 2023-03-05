@@ -1,3 +1,37 @@
+.game-vertical {
+  width: 400px;
+  height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  position: relative;
+}
+
+.game-vertical::after,
+.game-vertical::before {
+  content: '';
+  width: 2px;
+  height: 100%;
+  background: var(--gray-2);
+}
+
+.game-horizontal {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  position: absolute;
+}
+
+.game-horizontal::after,
+.game-horizontal::before {
+  content: '';
+  width: 100%;
+  height: 2px;
+  background: var(--gray-2);
+}
+
 .positions-list {
   list-style: none;
   width: 100%;

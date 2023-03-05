@@ -1,2 +1,3 @@
+export { Game } from './game/game.component'
 export { Modal } from './modal/modal.component'
-export { Positions } from './positions/positions.component'
+export { Header } from './header/header.component'
