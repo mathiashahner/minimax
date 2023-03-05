@@ -39,6 +39,8 @@
   display: flex;
   flex-wrap: wrap;
   position: absolute;
+  border-radius: 25px;
+  overflow: hidden;
 }
 
 .position {
@@ -49,8 +51,7 @@
   justify-content: center;
   cursor: pointer;
   background: none;
-  border-radius: 5px;
-  transition: all 0.1s;
+  transition: all 0.2s;
 }
 
 .position:hover {
