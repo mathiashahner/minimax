@@ -29,16 +29,18 @@ export const Game = ({ game, setGame }) => {
   const togglePlayer = currentPlayer => (currentPlayer === 'X' ? 'O' : 'X')
 
   return (
-    <div className='game-vertical '>
-      <div className='game-horizontal'>
-        <ul className='positions-list'>
-          {game.positions.map((value, position) => (
-            <li className='position' key={position} onClick={() => executeMove(position)}>
-              {value === 'X' && <div className='X' />}
-              {value === 'O' && <div className='O' />}
-            </li>
-          ))}
-        </ul>
+    <div className='game-container'>
+      <div className='game-vertical '>
+        <div className='game-horizontal'>
+          <ul className='positions-list'>
+            {game.positions.map((value, position) => (
+              <li className='position' key={position} onClick={() => executeMove(position)}>
+                {value === 'X' && <div className='X' />}
+                {value === 'O' && <div className='O' />}
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </div>
   )
